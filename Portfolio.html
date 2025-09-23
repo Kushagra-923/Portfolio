@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Intro</title>
+  <style>
+    *{
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    
+    /* === Video Background === */
+    #myVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .about-box {
+  background: rgba(0, 0, 0, 0.6); /* dark translucent background */
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192, 255, 0, 0.5);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+    
+    /* Initial black background overlay */
+    .initial-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 0;
+      transition: opacity 1.5s ease 0.5s;
+    }
+    
+    #start:checked ~ .initial-bg {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    /* Hidden checkbox triggers everything */
+    #start:checked ~ .outer .box {
+      transform: rotate(45deg);
+    }
+    
+    /* Outer wrapper to center boxes */
+    .outer {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    
+    /* All boxes are absolutely positioned one inside another */
+    .box {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(68, 68, 68, 0.8);
+      transition: transform 1s ease;
+      color: white;
+    }
+    
+    /* Neon border effect for each box */
+    .box::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      right: -15px;
+      bottom: -15px;
+      background: #C0FF00;
+      border-radius: 8px;
+      z-index: -1;
+      box-shadow: 0 0 15px #C0FF00, 0 0 30px #C0FF00;
+    }
+    
+    .box::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: transparent;
+      border: 3px solid #C0FF00;
+      border-radius: 6px;
+      z-index: -1;
+      box-shadow: 0 0 10px #C0FF00;
+    }
+    
+    .box1 { width: 300px; height: 300px; }
+    .box2 { width: 250px; height: 250px; }
+    .box3 { width: 200px; height: 200px; }
+    .box4 { width: 120px; height: 120px; background: #C0FF00; }
+    .box5 { width: 80px; height: 80px; }
+    
+    .button-box label {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .button-box label:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Black transition overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    
+    #start:checked ~ .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #start:checked ~ .overlay {
+      animation: showHide 2.5s ease forwards;
+    }
+    
+    @keyframes showHide {
+      0% { opacity: 0; visibility: hidden; }
+      20% { opacity: 1; visibility: visible; }
+      80% { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    
+    /* Portfolio content over video */
+    .portfolio {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1s ease 2s;
+      color: white;
+      overflow-y: auto;
+      z-index: 5;
+    }
+    
+    #start:checked ~ .portfolio {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #start:checked ~ .outer {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease 2s;
+    }
+    
+    /* Portfolio sections */
+    .section {
+      min-height: 100vh;
+      padding: 100px 40px;
+      backdrop-filter: blur(3px);
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .section:first-child {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    h1 {
+      margin-top: 0;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    
+    .nav {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 6;
+    }
+    
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Checkbox hidden */
+    #start {
+      display: none;
+    }
+
+    /* === Projects Section Styles === */
+    #projects {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #projects h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #C0FF00;
+    }
+
+    .project-card {
+      display: block;
+      max-width: 400px;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #C0FF00;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, background 0.3s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .project-title {
+      padding: 15px 20px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #C0FF00;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .project-content {
+      padding: 0 20px;
+      color: white;
+      font-size: 1rem;
+      line-height: 1.4;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    }
+
+    .project-card:hover .project-content {
+      max-height: 200px;
+      opacity: 1;
+      padding: 15px 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video background -->
+  <video autoplay muted loop id="myVideo">
+    <source src="space.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <!-- Hidden checkbox trigger -->
+  <input type="checkbox" id="start">
+  
+  <div class="initial-bg"></div>
+  
+  <div class="outer">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5 button-box">
+      <label for="start">Click Me</label>
+    </div>
+  </div>
+  
+  <div class="overlay"></div>
+  
+  <div class="portfolio">
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    
+    <div id="home" class="section">
+      <h1>Kushagra Shukla – Designer & Developer </h1>
+      <h3>Designing and Building Modern Web Experiences</h3>
+      <p>I’m Kushagra Shukla, a first year student pursuing my degree from IIT Madras in collaboration with Scaler School of Technology. I am passionate about building intuitive digital products that make a difference in the world.</p>
+    </div>
+    
+<div id="about" class="section">
+  <h1>About Me</h1>
+  <div class="about-box">
+    <p>Hi! I’m Kushagra Shukla, a curious and creative B.Tech student who loves turning ideas into simple, beautiful digital products.</p>
+    <p>Prior to starting my degree here, I lived in Lucknow and successfully cleared the IPMAT entrance exam — an experience that taught me discipline, consistency and how to think strategically.</p>
+    <p>I enjoy exploring different areas of technology — especially building responsive websites and experimenting with interactive designs. My focus is always on making things intuitive and enjoyable for people to use.</p>
+    <p>Outside of coding, I like keeping up with new trends in tech and design, and I’m always open to collaborating with people on interesting projects. Feel free to reach out if you’d like to connect or build something together!</p>
+  </div>
+</div>
+    
+    <div id="projects" class="section">
+      <h1>Projects</h1>
+
+      <!-- PrepVerse Project Card -->
+      <a href="https://prep-verse-delta.vercel.app/#" target="_blank" class="project-card">
+        <div class="project-title">PrepVerse</div>
+        <div class="project-content">
+          PrepVerse is a website made as a question bank for Scaler students.
+          It collects and provides access to previous year questions, helping learners prepare well.
+        </div>
+      </a>
+
+    </div>
+    
+    <div id="contact" class="section">
+      <h1>Contact</h1>
+      <p>Email:<a href="mailto:kushagrashukla707@gmail.com">kushagrashukla707@gmail.com</a></p>
+      <p> LinkedIn:<a href="https://www.linkedin.com/in/kushagra-shukla-81a7172bb/" target="_blank">https://www.linkedin.com/in/kushagra-shukla-81a7172bb/</a></p>
+    </div>
+  </div>
+</body>
+</html>

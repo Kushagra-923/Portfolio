@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  *{
+    padding:0px;
+    margin:0px;
+  }
+  body{
+    background-color:tomato;
+  }
+  .container{
+    width:1200px;
+    height:800px;
+    border: 10px solid black;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: repeat(3,2fr) ;
+    border-radius:60px;
+
+  }
+  .header{
+
+    margin: 20px;
+    background-color: blue;
+    border: 2px solid black;
+    border-radius:60px;
+
+  }
+  #yo{
+    background-color: azure;
+    grid-column:1/4;
+  }
+  .header:hover {
+    background-color: black;
+    transform:scale(1.1);
+    transition: 0.5s;
+  }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header" id="yo"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    </div>
+  
+</body>
+</html>
