@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Intro</title>
+  <title>Kushagra's Portfolio</title>
   <style>
     *{
       scroll-behavior: smooth;
       margin: 0;
       padding: 0;
     }
-    body {
+    .body-tag-is-here {
       margin: 0;
       font-family: 'Arial', sans-serif;
       overflow-x: hidden;
     }
 
-    #myVideo {
+    #video-sfx {
       position: fixed;
       top: 0;
       left: 0;
@@ -26,7 +26,9 @@
       z-index: -1;
     }
 
-    .initial-bg {
+    /* Start Screen Logic */
+
+    .nope-screen {
       position: fixed;
       top: 0;
       left: 0;
@@ -37,16 +39,16 @@
       transition: opacity 1.5s ease 0.5s;
     }
 
-    #start:checked ~ .initial-bg {
+    #the-go-button:checked ~ .nope-screen {
       opacity: 0;
       pointer-events: none;
     }
 
-    #start:checked ~ .outer .box {
+    #the-go-button:checked ~ .box-of-wishes .big-box {
       transform: rotate(45deg);
     }
 
-    .outer {
+    .box-of-wishes {
       position: relative;
       width: 100%;
       height: 100vh;
@@ -56,7 +58,7 @@
       z-index: 1;
     }
 
-    .box {
+    .cube-shape {
       position: absolute;
       display: flex;
       align-items: center;
@@ -66,7 +68,7 @@
       color: white;
     }
 
-    .box::before {
+    .cube-shape::before {
       content: '';
       position: absolute;
       top: -15px;
@@ -79,7 +81,7 @@
       box-shadow: 0 0 15px #C0FF00, 0 0 30px #C0FF00;
     }
 
-    .box::after {
+    .cube-shape::after {
       content: '';
       position: absolute;
       top: -10px;
@@ -93,13 +95,13 @@
       box-shadow: 0 0 10px #C0FF00;
     }
 
-    .box1 { width: 300px; height: 300px; }
-    .box2 { width: 250px; height: 250px; }
-    .box3 { width: 200px; height: 200px; }
-    .box4 { width: 120px; height: 120px; background: #C0FF00; }
-    .box5 { width: 80px; height: 80px; }
+    .big-box { width: 300px; height: 300px; }
+    .medium-box { width: 250px; height: 250px; }
+    .small-box { width: 200px; height: 200px; }
+    .tiny-green-box { width: 120px; height: 120px; background: #C0FF00; }
+    .the-button-area { width: 80px; height: 80px; }
 
-    .button-box label {
+    .the-button-area label {
       display: flex;
       width: 100%;
       height: 100%;
@@ -113,11 +115,11 @@
       transition: all 0.3s ease;
     }
 
-    .button-box label:hover {
+    .the-button-area label:hover {
       background: rgba(255, 255, 255, 0.1);
     }
 
-    .overlay {
+    .quick-fade-out {
       position: fixed;
       top: 0;
       left: 0;
@@ -133,7 +135,7 @@
       z-index: 10;
     }
 
-    #start:checked ~ .overlay {
+    #the-go-button:checked ~ .quick-fade-out {
       opacity: 1;
       visibility: visible;
       animation: showHide 2.5s ease forwards;
@@ -146,7 +148,7 @@
       100% { opacity: 0; visibility: hidden; }
     }
 
-    .portfolio {
+    .the-real-app {
       position: fixed;
       top: 0;
       left: 0;
@@ -161,18 +163,20 @@
       z-index: 5;
     }
 
-    #start:checked ~ .portfolio {
+    #the-go-button:checked ~ .the-real-app {
       opacity: 1;
       visibility: visible;
     }
 
-    #start:checked ~ .outer {
+    #the-go-button:checked ~ .box-of-wishes {
       opacity: 0;
       visibility: hidden;
       transition: all 0.5s ease 2s;
     }
 
-    .section {
+    /* Main Sections */
+
+    .section-base-style {
       min-height: auto;
       padding: 80px 40px 40px 40px;
       backdrop-filter: blur(3px);
@@ -180,29 +184,32 @@
       background: rgba(0, 0, 0, 0.3);
     }
 
-    .section:first-child {
+    .section-base-style:first-child {
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
       min-height: 100vh;
     }
 
-    #about.section {
+    #about-me-section.section-base-style {
       padding-bottom: 30px;
     }
 
-    #projects.section {
+    #project-section.section-base-style {
       padding-top: 40px;
+      padding-bottom: 40px;
     }
 
-    .nav {
+    /* Navigation Bar */
+
+    .top-fixed-nav {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 6;
     }
 
-    .nav a {
+    .top-fixed-nav a {
       color: white;
       text-decoration: none;
       margin: 0 15px;
@@ -210,15 +217,18 @@
       background: rgba(0, 0, 0, 0.5);
       border-radius: 20px;
       transition: all 0.3s ease;
+      font-weight: 600;
     }
 
-    .nav a:hover {
+    .top-fixed-nav a:hover {
       background: rgba(255, 255, 255, 0.2);
     }
 
-    #start { display: none; }
+    #the-go-button { display: none; }
 
-    .profile-image {
+    /* Home/Intro Content */
+
+    .my-face-pic {
       width: 180px;
       height: 180px;
       border-radius: 50%;
@@ -230,12 +240,12 @@
       display: block;
     }
 
-    .profile-image:hover {
+    .my-face-pic:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px #C0FF00, 0 0 60px rgba(192,255,0,0.5);
     }
 
-    .header-section {
+    .text-and-titles {
       text-align: center;
       margin-bottom: 30px;
     }
@@ -248,8 +258,9 @@
       text-align: center;
     }
 
-    #projects h1 {
+    #project-section h1 {
       margin-bottom: 1.25rem;
+      font-size: 2.5rem; 
     }
 
     h3 {
@@ -258,9 +269,10 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
       text-align: center;
       margin-bottom: 1.5rem;
+      font-weight: 500;
     }
 
-    .header-section p {
+    .text-and-titles p {
       margin-top: 1.5rem;
     }
 
@@ -273,9 +285,9 @@
       text-align: center;
     }
 
-    .books-box, .languages-box {
+    .cool-info-boxes, .code-languages {
       background: rgba(0,0,0,0.6);
-      padding: 20px;
+      padding: 20px 20px 20px 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.5);
       color: white;
@@ -286,58 +298,64 @@
       justify-content: center;
     }
 
-    .books-box h3, .languages-box h3 {
+    .cool-info-boxes h3, .code-languages h3 {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 16px; 
       font-size: 1.3rem;
       text-align: center;
     }
 
-    .home-content {
+    .modules-in-a-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: stretch;
       gap: 30px;
       margin-top: 20px;
+      margin-bottom: 15px;
     }
 
-    .books-box ul {
+    .cool-info-boxes ul {
       list-style: none;
-      padding-left: 0;
-      line-height: 1.6;
+      padding-left: 0px;
+      line-height: 1.6em;
       font-size: 1.1em;
       text-align: center;
     }
 
-    .languages-box {
+    .code-languages {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    .language-icons {
+    .language-icons-flex {
       display: flex;
       gap: 15px;
       margin-top: 10px;
+      margin-bottom: 5px;
     }
 
-    .language-icons img {
+    .language-icons-flex img {
       width: 50px;
       height: 50px;
     }
 
-    .about-box {
+    /* About Content */
+
+    .bio-text-wrapper {
       background: rgba(0,0,0,0.6);
-      padding: 20px;
+      padding: 22px; 
       border-radius: 15px;
       box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.5);
       max-width: 800px;
       margin: 0 auto;
     }
 
-    .project-box {
+    /* Projects Content */
+
+    .single-project-card {
       background: rgba(0,0,0,0.6);
       padding: 20px;
       border-radius: 15px;
@@ -350,21 +368,22 @@
       overflow: hidden;
       max-width: 400px;
       height: 50px;
+      border: 1px solid rgba(192, 255, 0, 0.4);
     }
 
-    .project-box:hover {
+    .single-project-card:hover {
       transform: scale(1.02);
       height: 150px;
     }
 
-    .project-title {
+    .project-name-title {
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 10px;
       transition: opacity 0.3s ease;
     }
 
-    .project-description {
+    .project-detail-text {
       font-size: 1rem;
       opacity: 0;
       max-height: 0;
@@ -375,23 +394,26 @@
       font-weight: 500;
     }
 
-    .project-box:hover .project-description {
+    .single-project-card:hover .project-detail-text {
       opacity: 1;
       max-height: 60px;
       margin-top: 10px;
     }
 
-    .project-box:hover .project-title {
+    .single-project-card:hover .project-name-title {
       opacity: 0.8;
     }
 
-    .projects-container {
-      min-height: 300px;
+    .project-list-wrapper {
       padding-bottom: 50px;
-      /* min-height: 50vh; <--- REMOVED THIS LINE */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .footer-section {
+    /* Footer/Connect Section */
+
+    .end-of-the-internet {
       background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
@@ -403,30 +425,32 @@
       padding-top: 100px; 
     }
 
-    .footer-heading {
+    .footer-big-words {
       font-size: 2.5rem;
       margin-bottom: 20px;
       color: white;
     }
 
-    .footer-heading span {
+    .footer-big-words span {
       color: #C0FF00;
     }
 
-    .footer-subheading {
+    .footer-small-words {
       font-size: 1.2rem;
       color: #888;
       margin-bottom: 40px;
+      font-weight: 300; 
     }
 
-    .social-links {
+    .social-icons-row {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin-top: 30px;
+      padding-bottom: 20px;
     }
 
-    .social-link {
+    .social-link-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -438,26 +462,27 @@
       text-decoration: none;
       transition: all 0.3s ease;
       position: relative;
+      box-shadow: 0 0 5px #C0FF00;
     }
 
-    .social-link:hover {
+    .social-link-wrapper:hover {
       background: #C0FF00;
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(192, 255, 0, 0.5);
     }
 
-    .social-link svg {
+    .social-link-wrapper svg {
       width: 30px;
       height: 30px;
       fill: #C0FF00;
       transition: all 0.3s ease;
     }
 
-    .social-link:hover svg {
+    .social-link-wrapper:hover svg {
       fill: #000;
     }
 
-    .social-link::after {
+    .social-link-wrapper::after {
       content: attr(data-tooltip);
       position: absolute;
       bottom: -30px;
@@ -474,127 +499,130 @@
       transition: opacity 0.3s ease;
     }
 
-    .social-link:hover::after {
+    .social-link-wrapper:hover::after {
       opacity: 1;
     }
 
   </style>
 </head>
-<body>
-  <video autoplay muted loop id="myVideo">
+<body class="body-tag-is-here">
+  <video autoplay muted loop id="video-sfx">
     <source src="space.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <input type="checkbox" id="start">
+  <input type="checkbox" id="the-go-button">
 
-  <div class="initial-bg"></div>
+  <div class="nope-screen"></div>
 
-  <div class="outer">
-    <div class="box box1"></div>
-    <div class="box box2"></div>
-    <div class="box box3"></div>
-    <div class="box box4"></div>
-    <div class="box box5 button-box">
-      <label for="start" style="font-size: x-small; text-align: center; line-height: 1.2;">
+  <div class="box-of-wishes">
+    <div class="cube-shape big-box"></div>
+    <div class="cube-shape medium-box"></div>
+    <div class="cube-shape small-box"></div>
+    <div class="cube-shape tiny-green-box"></div>
+    <div class="cube-shape the-button-area">
+      <label for="the-go-button" style="font-size: x-small; text-align: center; line-height: 1.2;">
         I solemnly swear<br>
         I am up to no good
       </label>
     </div>
   </div>
 
-  <div class="overlay"></div>
+  <div class="quick-fade-out"></div>
 
-  <div class="portfolio">
-    <nav class="nav">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#connect">Connect</a>
+  <div class="the-real-app">
+    <nav class="top-fixed-nav">
+      <a href="#iron">Home</a>
+      <a href="#steve">About</a>
+      <a href="#falcon">Projects</a>
+      <a href="#tony">Connect</a>
     </nav>
 
-    <div class="portfolio-content">
-      <div id="home" class="section">
-        <div class="header-section">
+    <div class="portfolio-content-wrapper">
+      <section id="iron" class="section-base-style">
+        <div class="text-and-titles">
           <h1>Kushagra Shukla – Designer & Developer</h1>
           <h3>"Designing and Building Modern Web & Mobile Apps"</h3>
           <p>I'm Kushagra Shukla, a first-year student pursuing my degree from IIT Madras in collaboration with Scaler School of Technology. I am passionate about building intuitive digital products that make a difference in the world.</p>
-          <img src="Image.jpg" alt="Kushagra Shukla" class="profile-image">
+          <img src="Image.jpg" alt="Kushagra Shukla" class="my-face-pic">
         </div>
+        
+        <section class="module-wrapper">
+          <div class="modules-in-a-row">
+            <section class="cool-info-boxes">
+              <h3>BOOKS I LOVE</h3>
+              <ul>
+                <li>Harry Potter</li>
+                <li>Game of Thrones</li>
+                <li>Rich Dad Poor Dad</li>
+                <li>Zero to One</li>
+              </ul>
+            </section>
 
-        <div class="home-content">
-          <div class="books-box">
-            <h3>BOOKS I LOVE</h3>
-            <ul>
-              <li>Harry Potter</li>
-              <li>Game of Thrones</li>
-              <li>Rich Dad Poor Dad</li>
-              <li>Zero to One</li>
-            </ul>
+            <section class="code-languages">
+              <h3>Languages I Know</h3>
+              <div class="language-icons-flex">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+              </div>
+            </section>
           </div>
+        </section>
+      </section>
 
-          <div class="languages-box">
-            <h3>Languages I Know</h3>
-            <div class="language-icons">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="about" class="section">
+      <section id="steve" class="section-base-style">
         <h1>About Me</h1>
-        <div class="about-box">
+        <div class="bio-text-wrapper">
           <p>Hi! I'm Kushagra Shukla, a curious and creative B.Tech student who loves turning ideas into simple, beautiful digital products.</p>
           <p>Prior to starting my degree here, I lived in Lucknow and successfully cleared the IPMAT entrance exam — an experience that taught me discipline, consistency and how to think strategically.</p>
           <p>I enjoy exploring different areas of technology — especially building responsive websites and experimenting with interactive designs. My focus is always on making things intuitive and enjoyable for people to use.</p>
           <p>Outside of coding, I like keeping up with new trends in tech and design, and I'm always open to collaborating with people on interesting projects. Feel free to reach out if you'd like to connect or build something together!</p>
         </div>
-      </div>
+      </section>
 
-      <div id="projects" class="section">
+      <section id="falcon" class="section-base-style">
         <h1>Projects</h1>
-        <div class="projects-container">
-          <div class="project-box" onclick="window.open('https://prep-verse-delta.vercel.app/#', '_blank')">
-            <div class="project-title">PrepVerse Project</div>
-            <div class="project-description">
+        <div class="project-list-wrapper">
+          <div class="single-project-card" onclick="window.open('https://prep-verse-delta.vercel.app/#', '_blank')">
+            <div class="project-name-title">PrepVerse Project</div>
+            <div class="project-detail-text">
               Interactive question solving platform for Scaler students to prepare for exams.
             </div>
           </div>
         </div>
-      </div>
+      </section>
     
-      <div class="footer-section" id="connect">
-        <h2 class="footer-heading">Wanna Talk? <span>Let's Connect</span></h2>
-        <p class="footer-subheading">Feel free to reach out through any of these platforms</p>
+      <footer class="end-of-the-internet" id="tony">
+        <h2 class="footer-big-words">Wanna Talk? <span>Let's Connect</span></h2>
+        <p class="footer-small-words">Feel free to reach out through any of these platforms</p>
         
-        <div class="social-links">
+        <div class="social-icons-row">
         
-          <a href="https://github.com/Kushagra-923" target="_blank" class="social-link" data-tooltip="GitHub">
+          <a href="https://github.com/Kushagra-923" target="_blank" class="social-link-wrapper" data-tooltip="GitHub">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </a>
 
           
-          <a href="https://www.linkedin.com/in/kushagra-shukla-81a7172bb/" target="_blank" class="social-link" data-tooltip="LinkedIn">
+          <a href="https://www.linkedin.com/in/kushagra-shukla-81a7172bb/" target="_blank" class="social-link-wrapper" data-tooltip="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
           </a>
 
           
-          <a href="mailto:kushagrashukla707@gmail.com" class="social-link" data-tooltip="Gmail">
+          <a href="mailto:kushagrashukla707@gmail.com" class="social-link-wrapper" data-tooltip="Gmail">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
             </svg>
           </a>
         </div>
-      </div>
-
+      </footer>
     </div>
   </div>
 </body>
 </html>
+
+
