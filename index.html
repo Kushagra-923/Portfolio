@@ -13,10 +13,9 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
     }
-    
-    /* === Video Background === */
+
     #myVideo {
       position: fixed;
       top: 0;
@@ -26,17 +25,7 @@
       object-fit: cover;
       z-index: -1;
     }
-    .about-box {
-  background: rgba(0, 0, 0, 0.6); /* dark translucent background */
-  padding: 30px 25px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192, 255, 0, 0.5);
-  max-width: 900px;
-  margin: 0 auto;
-}
 
-    
-    /* Initial black background overlay */
     .initial-bg {
       position: fixed;
       top: 0;
@@ -47,18 +36,16 @@
       z-index: 0;
       transition: opacity 1.5s ease 0.5s;
     }
-    
+
     #start:checked ~ .initial-bg {
       opacity: 0;
       pointer-events: none;
     }
-    
-    /* Hidden checkbox triggers everything */
+
     #start:checked ~ .outer .box {
       transform: rotate(45deg);
     }
-    
-    /* Outer wrapper to center boxes */
+
     .outer {
       position: relative;
       width: 100%;
@@ -68,8 +55,7 @@
       justify-content: center;
       z-index: 1;
     }
-    
-    /* All boxes are absolutely positioned one inside another */
+
     .box {
       position: absolute;
       display: flex;
@@ -79,8 +65,7 @@
       transition: transform 1s ease;
       color: white;
     }
-    
-    /* Neon border effect for each box */
+
     .box::before {
       content: '';
       position: absolute;
@@ -93,7 +78,7 @@
       z-index: -1;
       box-shadow: 0 0 15px #C0FF00, 0 0 30px #C0FF00;
     }
-    
+
     .box::after {
       content: '';
       position: absolute;
@@ -107,13 +92,13 @@
       z-index: -1;
       box-shadow: 0 0 10px #C0FF00;
     }
-    
+
     .box1 { width: 300px; height: 300px; }
     .box2 { width: 250px; height: 250px; }
     .box3 { width: 200px; height: 200px; }
     .box4 { width: 120px; height: 120px; background: #C0FF00; }
     .box5 { width: 80px; height: 80px; }
-    
+
     .button-box label {
       display: flex;
       width: 100%;
@@ -127,12 +112,11 @@
       font-size: 14px;
       transition: all 0.3s ease;
     }
-    
+
     .button-box label:hover {
       background: rgba(255, 255, 255, 0.1);
     }
-    
-    /* Black transition overlay */
+
     .overlay {
       position: fixed;
       top: 0;
@@ -148,24 +132,20 @@
       justify-content: center;
       z-index: 10;
     }
-    
+
     #start:checked ~ .overlay {
       opacity: 1;
       visibility: visible;
-    }
-    
-    #start:checked ~ .overlay {
       animation: showHide 2.5s ease forwards;
     }
-    
+
     @keyframes showHide {
       0% { opacity: 0; visibility: hidden; }
       20% { opacity: 1; visibility: visible; }
       80% { opacity: 1; visibility: visible; }
       100% { opacity: 0; visibility: hidden; }
     }
-    
-    /* Portfolio content over video */
+
     .portfolio {
       position: fixed;
       top: 0;
@@ -177,53 +157,53 @@
       transition: all 1s ease 2s;
       color: white;
       overflow-y: auto;
+      overflow-x: hidden;
       z-index: 5;
     }
-    
+
     #start:checked ~ .portfolio {
       opacity: 1;
       visibility: visible;
     }
-    
+
     #start:checked ~ .outer {
       opacity: 0;
       visibility: hidden;
       transition: all 0.5s ease 2s;
     }
-    
-    /* Portfolio sections */
+
     .section {
-      min-height: 100vh;
-      padding: 100px 40px;
+      min-height: auto;
+      padding: 80px 40px 40px 40px;
       backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       background: rgba(0, 0, 0, 0.3);
     }
-    
+
     .section:first-child {
       background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      min-height: 100vh;
     }
-    
-    h1 {
-      margin-top: 0;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
+    /* Special styling for About section to reduce bottom space */
+    #about.section {
+      padding-bottom: 30px;
     }
-    
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      max-width: 800px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+
+    /* Special styling for Projects section to reduce top space */
+    #projects.section {
+      padding-top: 40px;
     }
-    
+
     .nav {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 6;
     }
-    
+
     .nav a {
       color: white;
       text-decoration: none;
@@ -233,140 +213,394 @@
       border-radius: 20px;
       transition: all 0.3s ease;
     }
-    
+
     .nav a:hover {
       background: rgba(255, 255, 255, 0.2);
     }
-    
-    /* Checkbox hidden */
-    #start {
-      display: none;
+
+    #start { display: none; }
+
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 30px auto 20px auto;
+      box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.3);
+      border: 3px solid #C0FF00;
+      object-fit: cover;
+      transition: all 0.3s ease;
+      display: block;
     }
 
-    /* === Projects Section Styles === */
-    #projects {
-      padding: 60px 20px;
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #C0FF00, 0 0 60px rgba(192,255,0,0.5);
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
       text-align: center;
     }
 
+    /* Specific margin for Projects heading */
     #projects h1 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #C0FF00;
+      margin-bottom: 1rem;
     }
 
-    .project-card {
-      display: block;
-      max-width: 400px;
-      margin: 30px auto;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #C0FF00;
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
+    h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-section p {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .books-box, .languages-box {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.5);
       color: white;
-      transition: transform 0.3s ease, background 0.3s ease;
-      position: relative;
+      min-width: 250px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .project-card:hover {
-      transform: scale(1.05);
-      background: rgba(0, 0, 0, 0.3);
+    .books-box h3, .languages-box h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .home-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .books-box ul {
+      list-style: none;
+      padding-left: 0;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .languages-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .language-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .language-icons img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .about-box {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.5);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .project-box {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #C0FF00, 0 0 40px rgba(192,255,0,0.5);
+      margin-top: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      max-width: 400px;
+      height: 50px;
+    }
+
+    .project-box:hover {
+      transform: scale(1.02);
+      height: 150px;
     }
 
     .project-title {
-      padding: 15px 20px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      color: #C0FF00;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+      transition: opacity 0.3s ease;
     }
 
-    .project-content {
-      padding: 0 20px;
-      color: white;
+    .project-description {
       font-size: 1rem;
-      line-height: 1.4;
-      max-height: 0;
       opacity: 0;
+      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+      transition: all 0.3s ease;
+      line-height: 1.4;
+      color: #C0FF00;
+      font-weight: 500;
     }
 
-    .project-card:hover .project-content {
-      max-height: 200px;
+    .project-box:hover .project-description {
       opacity: 1;
-      padding: 15px 20px;
+      max-height: 60px;
+      margin-top: 10px;
     }
+
+    .project-box:hover .project-title {
+      opacity: 0.8;
+    }
+
+    .projects-container 
+    {
+      min-height: 1000px;
+      padding-bottom: 10000px;
+    }
+    .footer-section 
+    {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      margin-top: 0;
+    }
+
+    .footer-heading 
+    {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-heading span 
+    {
+      color: #C0FF00;
+    }
+
+    .footer-subheading 
+    {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    .social-links 
+    {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .social-link 
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: rgba(192, 255, 0, 0.1);
+      border: 2px solid #C0FF00;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .social-link:hover 
+    {
+      background: #C0FF00;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(192, 255, 0, 0.5);
+    }
+
+    .social-link svg
+    {
+      width: 30px;
+      height: 30px;
+      fill: #C0FF00;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover svg 
+    {
+      fill: #000;
+    }
+    .social-link::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C0FF00;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .social-link:hover::after {
+      opacity: 1;
+    }
+
   </style>
 </head>
 <body>
-  <!-- Video background -->
   <video autoplay muted loop id="myVideo">
     <source src="space.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  
-  <!-- Hidden checkbox trigger -->
+
   <input type="checkbox" id="start">
-  
+
   <div class="initial-bg"></div>
-  
+
   <div class="outer">
     <div class="box box1"></div>
     <div class="box box2"></div>
     <div class="box box3"></div>
     <div class="box box4"></div>
     <div class="box box5 button-box">
-      <label for="start">Click Me</label>
+      <label for="start" style="font-size: x-small; text-align: center; line-height: 1.2;">
+        I solemnly swear<br>
+        I am up to no good
+      </label>
     </div>
   </div>
-  
+
   <div class="overlay"></div>
-  
+
   <div class="portfolio">
     <nav class="nav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
     </nav>
-    
-    <div id="home" class="section">
-      <h1>Kushagra Shukla – Designer & Developer </h1>
-      <h3>Designing and Building Modern Web Experiences</h3>
-      <p>I’m Kushagra Shukla, a first year student pursuing my degree from IIT Madras in collaboration with Scaler School of Technology. I am passionate about building intuitive digital products that make a difference in the world.</p>
-    </div>
-    
-<div id="about" class="section">
-  <h1>About Me</h1>
-  <div class="about-box">
-    <p>Hi! I’m Kushagra Shukla, a curious and creative B.Tech student who loves turning ideas into simple, beautiful digital products.</p>
-    <p>Prior to starting my degree here, I lived in Lucknow and successfully cleared the IPMAT entrance exam — an experience that taught me discipline, consistency and how to think strategically.</p>
-    <p>I enjoy exploring different areas of technology — especially building responsive websites and experimenting with interactive designs. My focus is always on making things intuitive and enjoyable for people to use.</p>
-    <p>Outside of coding, I like keeping up with new trends in tech and design, and I’m always open to collaborating with people on interesting projects. Feel free to reach out if you’d like to connect or build something together!</p>
-  </div>
-</div>
-    
-    <div id="projects" class="section">
-      <h1>Projects</h1>
 
-      <!-- PrepVerse Project Card -->
-      <a href="https://prep-verse-delta.vercel.app/#" target="_blank" class="project-card">
-        <div class="project-title">PrepVerse</div>
-        <div class="project-content">
-          PrepVerse is a website made as a question bank for Scaler students.
-          It collects and provides access to previous year questions, helping learners prepare well.
+    <div class="portfolio-content">
+      <div id="home" class="section">
+        <div class="header-section">
+          <h1>Kushagra Shukla – Designer & Developer</h1>
+          <h3>"Designing and Building Modern Web & Mobile Apps"</h3>
+          <p>I'm Kushagra Shukla, a first-year student pursuing my degree from IIT Madras in collaboration with Scaler School of Technology. I am passionate about building intuitive digital products that make a difference in the world.</p>
+          <img src="Image.jpg" alt="Kushagra Shukla" class="profile-image">
         </div>
-      </a>
 
-    </div>
+        <div class="home-content">
+          <div class="books-box">
+            <h3>BOOKS I LOVE</h3>
+            <ul>
+              <li>Harry Potter</li>
+              <li>Game of Thrones</li>
+              <li>Rich Dad Poor Dad</li>
+              <li>Zero to One</li>
+            </ul>
+          </div>
+
+          <div class="languages-box">
+            <h3>Languages I Know</h3>
+            <div class="language-icons">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="about" class="section">
+        <h1>About Me</h1>
+        <div class="about-box">
+          <p>Hi! I'm Kushagra Shukla, a curious and creative B.Tech student who loves turning ideas into simple, beautiful digital products.</p>
+          <p>Prior to starting my degree here, I lived in Lucknow and successfully cleared the IPMAT entrance exam — an experience that taught me discipline, consistency and how to think strategically.</p>
+          <p>I enjoy exploring different areas of technology — especially building responsive websites and experimenting with interactive designs. My focus is always on making things intuitive and enjoyable for people to use.</p>
+          <p>Outside of coding, I like keeping up with new trends in tech and design, and I'm always open to collaborating with people on interesting projects. Feel free to reach out if you'd like to connect or build something together!</p>
+        </div>
+      </div>
+
+      <div id="projects" class="section">
+        <h1>Projects</h1>
+        <div class="projects-container">
+          <div class="project-box" onclick="window.open('https://prep-verse-delta.vercel.app/#', '_blank')">
+            <div class="project-title">PrepVerse Project</div>
+            <div class="project-description">
+              Interactive question solving platform for Scaler students to prepare for exams.
+            </div>
+          </div>
+        </div>
+      </div>
     
-    <div id="contact" class="section">
-      <h1>Contact</h1>
-      <p>Email:<a href="mailto:kushagrashukla707@gmail.com">kushagrashukla707@gmail.com</a></p>
-      <p> LinkedIn:<a href="https://www.linkedin.com/in/kushagra-shukla-81a7172bb/" target="_blank">https://www.linkedin.com/in/kushagra-shukla-81a7172bb/</a></p>
+      <div class="footer-section">
+        <h2 class="footer-heading">Wanna Talk? <span>Let's Connect</span></h2>
+        <p class="footer-subheading">Feel free to reach out through any of these platforms</p>
+        
+        <div class="social-links">
+        
+          <a href="https://github.com/Kushagra-923" target="_blank" class="social-link" data-tooltip="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+
+         
+          <a href="https://www.linkedin.com/in/kushagra-shukla-81a7172bb/" target="_blank" class="social-link" data-tooltip="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+
+          
+          <a href="mailto:kushagrashukla707@gmail.com" class="social-link" data-tooltip="Gmail">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </body>
